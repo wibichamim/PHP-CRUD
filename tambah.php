@@ -1,6 +1,6 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php");
+include("koneksi.php");
 ?>
 	<div class="container">
 		<div class="content">
@@ -16,7 +16,7 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 				$foto = mysqli_query($koneksi, "Select * from members");
 				
 				$foto = false;
-			if(isset($_POST['add'])){ // jika tombol 'Simpan' dengan properti name="add" ditekan
+			if(isset($_POST['add'])){ 
 				$target = "img/".basename($_FILES["foto"]["name"]);
 				$fullname	   = $_POST['fullname'];
 				$email   = $_POST['email'];
@@ -28,11 +28,11 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 
 
  
-						$insert = mysqli_query($koneksi, "INSERT INTO members( fullname, email, address, idcompany, idcity, foto) VALUES('$fullname', '$email', '$address', '$idcompany1', '$idcity1', '$foto')") or die(mysqli_error()); // query untuk menambahkan data ke dalam database
-						if($insert){ // jika query insert berhasil dieksekusi
-							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Member Berhasil disimpan <a href="index.php"><- Kembali</a></div>'; // maka tampilkan 'Data Mahasiswa Berhasil Di Simpan.'
-						}else{ // jika query insert gagal dieksekusi
-							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Ups, Data Member Gagal Di simpan! <a href="index.php"><- Kembali</a></div>'; // maka tampilkan 'Ups, Data Mahasiswa Gagal Di simpan!'
+						$insert = mysqli_query($koneksi, "INSERT INTO members( fullname, email, address, idcompany, idcity, foto) VALUES('$fullname', '$email', '$address', '$idcompany1', '$idcity1', '$foto')") or die(mysqli_error()); 
+						if($insert){ 
+							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Member Berhasil disimpan <a href="index.php"><- Kembali</a></div>'; 
+						}else{ 
+							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Ups, Data Member Gagal Di simpan! <a href="index.php"><- Kembali</a></div>'; 
 						}
 					
 			if (move_uploaded_file($_FILES["foto"]["tmp_name"],$target)) {
@@ -108,6 +108,3 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			</form> <!-- /form -->
 		</div> <!-- /.content -->
 	</div> <!-- /.container -->
-<?php 
-// include("footer.php"); // memanggil file footer.php
-?>
