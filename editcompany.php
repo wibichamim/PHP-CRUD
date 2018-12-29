@@ -1,14 +1,14 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php"); 
+include("koneksi.php"); 
 ?>
 	<div class="container">
 		<div class="content">
 
 			
 			<?php
-				$idcompany = $_GET['idcompany']; // assigment nim dengan nilai nim yang akan diedit
-				$sql = mysqli_query($koneksi, "SELECT * FROM company WHERE idcompany='$idcompany'"); // query untuk memilih entri data dengan nilai nim terpilih
+				$idcompany = $_GET['idcompany'];
+				$sql = mysqli_query($koneksi, "SELECT * FROM company WHERE idcompany='$idcompany'"); 
 				if(mysqli_num_rows($sql) == 0){
 					header("Location: company.php");
 				}else{
@@ -16,16 +16,16 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 				}
 
 				$msg = "";
-			if(isset($_POST['save'])){ // jika tombol 'Simpan' dengan properti name="add" ditekan
+				if(isset($_POST['save'])){ 
 			
-				$name	   = $_POST['name'];
-				
+					$name	   = $_POST['name'];
+					
 
-				$update = mysqli_query($koneksi, "UPDATE company SET name='$name' WHERE idcompany='$idcompany'") or die(mysqli_error()); 
-				if($update){ 
-					header("Location: editcompany.php?idcompany=".$idcompany."&pesan=sukses"); 
-				}else{ // jika query update gagal dieksekusi
-					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>'; 
+					$update = mysqli_query($koneksi, "UPDATE company SET name='$name' WHERE idcompany='$idcompany'") or die(mysqli_error()); 
+					if($update){ 
+						header("Location: editcompany.php?idcompany=".$idcompany."&pesan=sukses"); 
+					}else{ 
+						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>'; 
 				}
 			}
 			
@@ -34,8 +34,9 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			}
 		
 			?>
+
 			<h2>Edit Company &raquo; <?php echo $row['name']; ?></h2>
-						<hr />
+			<hr />
 		
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 				<div class="form-group">

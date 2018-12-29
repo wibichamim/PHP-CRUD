@@ -1,6 +1,6 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php"); 
+include("koneksi.php");
 ?>
 	<div class="container">
 		<div class="content">
@@ -15,17 +15,17 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 
 			
 			<?php
-			if(isset($_GET['aksi']) == 'delete'){ // mengkonfirmasi jika 'aksi' bernilai 'delete'
-				$idcompany = $_GET['idcompany']; // ambil nilai nim
-				$cek = mysqli_query($koneksi, "Select * from company WHERE idcompany='$idcompany'"); // query untuk memilih entri dengan nim yang dipilih
-				if(mysqli_num_rows($cek) == 0){ // mengecek jika tidak ada entri nim yang dipilih
-					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>'; // maka tampilkan 'Data tidak ditemukan.'
-				}else{ // mengecek jika terdapat entri nim yang dipilih
-					$delete = mysqli_query($koneksi, "DELETE FROM company WHERE idcompany='$idcompany'"); // query untuk menghapus
-					if($delete){ // jika query delete berhasil dieksekusi
-						echo '<div class="alert alert-primary alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data berhasil dihapus.</div>'; // maka tampilkan 'Data berhasil dihapus.'
-					}else{ // jika query delete gagal dieksekusi
-						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data gagal dihapus.</div>'; // maka tampilkan 'Data gagal dihapus.'
+			if(isset($_GET['aksi']) == 'delete'){ 
+				$idcompany = $_GET['idcompany']; 
+				$cek = mysqli_query($koneksi, "Select * from company WHERE idcompany='$idcompany'"); 
+				if(mysqli_num_rows($cek) == 0){ 
+					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>'; 
+				}else{ 
+					$delete = mysqli_query($koneksi, "DELETE FROM company WHERE idcompany='$idcompany'"); 
+					if($delete){ 
+						echo '<div class="alert alert-primary alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data berhasil dihapus.</div>'; 
+					}else{ 
+						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data gagal dihapus.</div>'; 
 					}
 				}
 			}
@@ -44,10 +44,10 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 						$sql = mysqli_query($koneksi, "Select * from company"); 
 					
 					if(mysqli_num_rows($sql) == 0){ 
-						echo '<tr><td colspan="14">Data Tidak Ada.</td></tr>'; // jika tidak ada entri di database maka tampilkan 'Data Tidak Ada.'
-					}else{ // jika terdapat entri maka tampilkan datanya
-						$no = 1; // mewakili data dari nomor 1
-						while($row = mysqli_fetch_assoc($sql)){ // fetch query yang sesuai ke dalam array
+						echo '<tr><td colspan="14">Data Tidak Ada.</td></tr>'; 
+					}else{ 
+						$no = 1; 
+						while($row = mysqli_fetch_assoc($sql)){ 
 							echo '
 							<tr>
 								<td>'.$no.'</td>
@@ -59,7 +59,7 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 								</td>
 							</tr>
 							';
-							$no++; // mewakili data kedua dan seterusnya
+							$no++; 
 						}
 					}
 					?>
@@ -67,6 +67,3 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			</div> <!-- /.table-responsive -->
 		</div> <!-- /.content -->
 	</div> <!-- /.container -->
-<?php 
-// include("footer.php"); // memanggil file footer.php
-?>

@@ -9,4 +9,5 @@ $koneksi = mysqli_connect($host, $user, $pass, $database); // menggunakan mysqli
 if(mysqli_connect_errno()){ // mengecek apakah koneksi database error
 	echo 'Gagal melakukan koneksi ke Database : '.mysqli_connect_error(); // pesan ketika koneksi database error
 }
+
 ?>

@@ -1,14 +1,14 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php"); 
+include("koneksi.php"); 
 ?>
 	<div class="container">
 		<div class="content">
 
 			
 			<?php
-				$id = $_GET['id']; // assigment nim dengan nilai nim yang akan diedit
-				$sql = mysqli_query($koneksi, "SELECT * FROM members WHERE id='$id'"); // query untuk memilih entri data dengan nilai nim terpilih
+				$id = $_GET['id'];
+				$sql = mysqli_query($koneksi, "SELECT * FROM members WHERE id='$id'"); 
 				if(mysqli_num_rows($sql) == 0){
 					header("Location: index.php");
 				}else{
@@ -22,7 +22,7 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 				$city1 =  mysqli_query($koneksi, "SELECT * from city join members on members.idcity!=city.idcity where id='$id'");
 				$foto = mysqli_query($koneksi, "Select foto from members where id='$id'");
 				
-			if(isset($_POST['save'])){ // jika tombol 'Simpan' dengan properti name="add" ditekan
+			if(isset($_POST['save'])){ 
 				$target = "img/".basename($_FILES["foto"]["name"]);
 				$fullname	   = $_POST['fullname'];
 				$email   = $_POST['email'];
@@ -37,6 +37,7 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 				}else{ // jika query update gagal dieksekusi
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>'; 
 				}
+
 			if (move_uploaded_file($_FILES["foto"]["tmp_name"],$target)) {
 				$msg = " success";
 								
@@ -50,8 +51,9 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			}
 		
 			?>
+
 			<h2>Edit Member &raquo; <?php echo $row['fullname']; ?></h2>
-						<hr />
+			<hr />
 		
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 				<div class="form-group">
@@ -140,6 +142,3 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			</form> <!-- /form -->
 		</div> <!-- /.content -->
 	</div> <!-- /.container -->
-<?php 
-// include("footer.php"); // memanggil file footer.php
-?>

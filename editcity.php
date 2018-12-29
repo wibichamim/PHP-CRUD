@@ -1,14 +1,14 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php");
+include("koneksi.php"); 
 ?>
 	<div class="container">
 		<div class="content">
 
 			
 			<?php
-				$idcity = $_GET['idcity']; // assigment nim dengan nilai nim yang akan diedit
-				$sql = mysqli_query($koneksi, "SELECT * FROM city WHERE idcity='$idcity'"); // query untuk memilih entri data dengan nilai nim terpilih
+				$idcity = $_GET['idcity']; 
+				$sql = mysqli_query($koneksi, "SELECT * FROM city WHERE idcity='$idcity'"); 
 				if(mysqli_num_rows($sql) == 0){
 					header("Location: city.php");
 				}else{
@@ -16,26 +16,28 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 				}
 
 				$msg = "";
-			if(isset($_POST['save'])){ // jika tombol 'Simpan' dengan properti name="add" ditekan
+				if(isset($_POST['save'])){ 
 			
-				$cityname	   = $_POST['cityname'];
-				$country   = $_POST['country'];
+					$cityname	   = $_POST['cityname'];
+					$country   = $_POST['country'];
 
-				$update = mysqli_query($koneksi, "UPDATE city SET cityname='$cityname', country='$country' WHERE idcity='$idcity'") or die(mysqli_error()); 
-				if($update){ 
-					header("Location: editcity.php?idcity=".$idcity."&pesan=sukses"); 
-				}else{ // jika query update gagal dieksekusi
-					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>'; 
+					$update = mysqli_query($koneksi, "UPDATE city SET cityname='$cityname', country='$country' WHERE idcity='$idcity'") or die(mysqli_error()); 
+					if($update){ 
+						header("Location: editcity.php?idcity=".$idcity."&pesan=sukses"); 
+					}else{
+						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>'; 
 				}
 			}
 			
-			if(isset($_GET['pesan']) == 'sukses'){ 
-				echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data berhasil disimpan. <a href="city.php"><- Kembali</a></div>'; 
+				if(isset($_GET['pesan']) == 'sukses'){ 
+					echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data berhasil disimpan. <a href="city.php"><- Kembali</a></div>'; 
 			}
 		
 			?>
+
+
 			<h2>Edit City &raquo; <?php echo $row['cityname']; ?></h2>
-						<hr />
+			<hr />
 		
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 				<div class="form-group">

@@ -1,6 +1,6 @@
 <?php 
-include("header.php"); // memanggil file header.php
-include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
+include("header.php"); 
+include("koneksi.php");
 ?>
 	<div class="container">
 		<div class="content">
@@ -9,24 +9,21 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 
 			
 			<?php
-
-				$msg = "";
-			if(isset($_POST['add'])){ // jika tombol 'Simpan' dengan properti name="add" ditekan
+				if(isset($_POST['add'])){ 
 				
 				$cityname	   = $_POST['cityname'];
 				$country   = $_POST['country'];
 
-
-
  
-						$insert = mysqli_query($koneksi, "INSERT INTO city( cityname, country) VALUES('$cityname', '$country')") or die(mysqli_error()); // query untuk menambahkan data ke dalam database
-						if($insert){ // jika query insert berhasil dieksekusi
-							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Member Berhasil disimpan <a href="city.php"><- Kembali</a></div>'; // maka tampilkan 'Data Mahasiswa Berhasil Di Simpan.'
-						}else{ // jika query insert gagal dieksekusi
-							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Ups, Data Member Gagal Di simpan! <a href="city.php"><- Kembali</a></div>'; // maka tampilkan 'Ups, Data Mahasiswa Gagal Di simpan!'
+						$insert = mysqli_query($koneksi, "INSERT INTO city( cityname, country) VALUES('$cityname', '$country')") or die(mysqli_error());
+						if($insert){ 
+							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Member Berhasil disimpan <a href="city.php"><- Kembali</a></div>'; 
+						}else{
+							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Ups, Data Member Gagal Di simpan! <a href="city.php"><- Kembali</a></div>';
 						}
 					
 			}
+
 			?>
 			<!-- bagian ini merupakan bagian form untuk menginput data yang akan dimasukkan ke database -->
 			<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
@@ -53,6 +50,3 @@ include("koneksi.php"); // memanggil file koneksi.php untuk koneksi ke database
 			</form> <!-- /form -->
 		</div> <!-- /.content -->
 	</div> <!-- /.container -->
-<?php 
-// include("footer.php"); // memanggil file footer.php
-?>
